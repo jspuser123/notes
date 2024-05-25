@@ -1,0 +1,10 @@
+kali memory
+
+Filesystem      Size  Used Avail Use% Mounted on
+udev            3.9G     0  3.9G   0% /dev
+tmpfs           788M  1.4M  786M   1% /run
+/dev/sda1       116G   24G   87G  22% /
+tmpfs           3.9G   14M  3.9G   1% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           788M  132K  787M   1% /run/user/1000
+

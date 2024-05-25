@@ -1,0 +1,45 @@
+frappe jinja
+
+{{doc.customer_po or ''}} on none not
+
++++++++++++++++++++++++++++++++++++++++++
+
+<th rowspan="5" class="rotatehead"><p><b>RIS&nbsp;Completetion<br>Acknowledgement</b></p></th>
+.rotatehead
+{
+
+position: relative;
+width: 5px;
+
+}
+.rotatehead p
+{
+
+width: 10px;
+padding-top:90px;
+padding-left:70px;
+transform: rotate(-90deg);
+transform-origin:70px 150px;
+
+}
+
+++++++++++++++++++++++++++++++++++++++++++
+list count number
+
+ <ol>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul> 
+
+font style
+
+font-family: "Times New Roman", Times, serif;
+
+++++++++++++++++++++++++++====

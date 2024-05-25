@@ -1,0 +1,32 @@
+frappe installtion
+
+
+
+
+git clone https://github.com/frappe/bench bench-repo
+sudo pip3 install -e bench-repo
+sudo pip3 install frappe-bench
+sudo apt install software-properties-common -y
+
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+sudo apt install python3.10
+sudo apt install python3.10-dev
+bench init frappe-bench --frappe-path https://github.com/frappe/frappe --frappe-branch version-13
+
+
+
+
+
+
+dev mode 
+
+
+
+bench set-config -g developer_mode 1
+
+
+
+
+bench get-app payments
+bench get-app --branch version-14 erpnext
+bench get-app hrms

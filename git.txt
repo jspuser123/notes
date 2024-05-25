@@ -1,0 +1,29 @@
+https://github.com/jspuser123/cholaking123.git
+
+
+
+git config --global user.name "jspuser123"
+git config --global user.email "asp6406@address.com"  or 126677122+jspuser123@user.noreply.github.com                      
+git config --list
+
+new
+
+echo "# cholaking123" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jspuser123/cholaking123.git
+git push -u origin main
+
+
+already upload
+
+
+git remote add origin https://github.com/jspuser123/cholaking123.git
+git branch -M main
+git push -u origin main
+
+
+
+               +++++++++++++++++++++>accesstoken 30days

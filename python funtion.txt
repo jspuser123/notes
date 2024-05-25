@@ -1,0 +1,56 @@
+python funtion
+
+def displayPerson(**kwargs):
+    print(kwargs)
+displayPerson(name="Emma", age=25)
+
+
+
+def print_numbers(*args):
+    print(args)
+print_numbers(5, 23, 45, 78)
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++python zpl printer++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+import requests
+import shutil
+
+zpl = '^xa^cfa,50^fo100,100^fdHello World^fs^xz'
+
+# adjust print density (8dpmm), label width (4 inches), label height (6 inches), and label index (0) as necessary
+url = 'http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/'
+files = {'file' : zpl}
+headers = {'Accept' : 'application/pdf'} # omit this line to get PNG images back
+response = requests.post(url, headers = headers, files = files, stream = True)
+
+if response.status_code == 200:
+    response.raw.decode_content = True
+    with open('label.pdf', 'wb') as out_file: # change file name for PNG images
+        shutil.copyfileobj(response.raw, out_file)
+else:
+    print('Error: ' + response.text)
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+ +++++++++++++++++++++++++++++++++++++++++++++++++++serial port connect+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ import serial
+ 
+ s = serial.Serial("/dev/serial/port1", 115200)
+ 
+ s.write(b"Hello from serial port")
+ 
+ 
+ save
+ 
+ sudo only run serial port file
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ import file  find
+ 
+ sudo python3
+ import serial
+ 
+print(serial.__file__) --> Copy                           print(dir(serial))
+
+paste/__init__.py

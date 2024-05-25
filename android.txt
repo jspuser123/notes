@@ -1,0 +1,24 @@
+android
+
+
+++++++++++++++++++++++
+from kivy.utils import platform
+import os
+if platform == "android":
+     from android.permissions import request_permissions, Permission
+     request_permissions([Permission.READ_EXTERNAL_STORAGE,Permission.WRITE_EXTERNAL_STORAGE])
+     
+     
+     
+with open(f'{os.environ["EXTERNAL_STORAGE"]}/arquivo.txt','w') as fw:
+                fw.write('teste de entrar dados no arquivo')
+                fw.close()
+     
+++++++++++++++++++++     
+ requirements = python3,kivy, android
+ 
+ 
+ 
+ 
+  google-android-platform-tools-installer
+

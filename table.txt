@@ -1,0 +1,36 @@
+CREATE TABLE   ProductMovement(​movement_id INTEGER PRIMARY KEY AUTOINCREMENT,
+date datetime default current_timestamp,
+From_location varchar(100) NOT NULL,
+To_location varchar(100) NOT NULL,
+Product_id int identity(200,1),
+Product text NOT NULL,​
+Qty int NOT NULL);
+    
+    
+    
+insert into ProductMovement(date,from_location,to_location,product,qty) values(2023-03-23,thanjavur,'trupur',musiceq,10);
+
+
+
+
+create table product(product_id INTEGER PRIMARY KEY AUTOINCREMENT,product text NOT NULL);
+
+
+insert into product(product) values('cone');
+
+
+
+
+
+
+
+mysql
+
+
+
+
+root
+
+*7DE27DE69C0D068CCC2662F6A7FBEFE2E13A189F
+
+

@@ -1,0 +1,63 @@
+kivy 
+
+installtion
+
+python -m venv env
+
+pip install kivy
+or
+
+python -m pip install "kivy[base] @ https://github.com/kivy/kivy/archive/master.zip" 
+
+++++++++++++++++++++++++++++
+
+mvc
+
+kivymd.create_project MVC /usr/js/project/kivy1  HReload python3 2.1.0 --use_hotreload yes
+
+
+DEBUG=1 python main.py
+
+DEBUG=1 python3 reload.py -m screen:note2,portrait,scale=.75
+
+
+
+
+excute ok open file error pdf
+jnius.jnius.JavaException: JVM exception occurred: file:///sdcard/Pictures/op.pdf exposed beyond app through Intent.getData() android.os.FileUriExposedException
+
+
+ans
+
+p4a apk --private {app_root_dir} --version={app_version} --bootstrap=sdl2 --window --requirements=python3,kivy,openssl,sqlite3,pillow,pytz,sdl2,{requirements} --permission=CALL_PHONE --permission=INTERNET --permission=WRITE_EXTERNAL_STORAGE --permission=READ_EXTERNAL_STORAGE --orientation=portrait --dist-name test_my_build --fileprovider-paths=./fileprovider_paths.xml --package=org.example.mytest --name="mytest" --release
+
+
+Installed very useful tool androguard which delivers all manner of tools to inspect an apk
+
+pip install git+https://github.com/androguard/androguard.git
+
+(kivy) C:\> androguard axml unnamed_dist_1__arm64-v8a-debug-0.1-.apk
+
+
+
+for file_paths:
+===============
+
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path name="my_images" path="images/"/>
+</paths>
+
+
+AndroidManifest.xml
+===================
+
+
+<provider android:name="android.support.v4.content.FileProvider"
+          android:authorities="com.chdirections.fileprovider"
+          android:exported="false"
+          android:grantUriPermissions="true">
+  <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+             android:resource="@xml/file_paths" />
+</provider>
+

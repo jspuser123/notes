@@ -1,0 +1,9 @@
+CREATE API CALL ROW DATA INPUT CREATE
+
+ALL DOC GET NEW DOC TYPE INSRET
+
+
+
+raw data => sales order1=>save(frappe call method)
+
+sales order1=>list=>new_doc=>sales oder=>save

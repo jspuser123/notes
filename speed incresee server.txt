@@ -1,0 +1,95 @@
+1 From NPS try to Disable Automatic Root Certificate Update.
+
+Click Start, then click Run.
+Type gpedit.msc, then click OK.
+If the User Account Control (UAC) dialog box appears, confirm that it displays the desired action. Click Continue. If the UAC dialog box does not appear, proceed with the Local Group Policy Editor dialog box.
+Double-click Administrative Templates under Computer Configuration. Double-click System. Double-click Internet Communication Management. Double-click Internet Communication Settings.
+Double-click Turn off Automatic Root Certificates Update. Click Enabled. Then, click OK.
+Close the Local Group Policy Editor dialog box.
+Reboot the Windows Server / operating system.
+
+
+2 Disable any Antivirus program or Windows firewall you may have for temporary purpose.
+
+Right-click the Windows Defender icon in the System Tray. This is located in the lower-right corner of the desktop. The icon looks like a blue shield with four sections.  Windows Defender If you do not see the icon, click the arrow button at the edge of the System Tray to expand the Tray and display all the icons.
+Select Virus & threat protection.
+Slide the knob to the left to turn OFF.
+Select Firewall & network protection.
+Select Domain network.
+Slide the knob to the left to turn OFF.
+Select Private network.
+Slide the knob to the left to turn OFF.
+
+
+
+Cleanup below Temp folders
+3. C:\Windows\Temp
+%USERPROFILE%\AppData\Local\Temp
+--------------------------------------------------
+
+
+if you use applications that require too much computing power to operate, you are better off replacing them with applications that do the same job as them but faster. Few resource hogging applications that you can replace are:-
+1) Most resource intensive antivirus software can be replaced with the lightweight Avast free antivirus.
+2) Microsoft Office (Microsoft 365) can be replaced with OpenOffice, an open source alternative that also has loads of amazing additions.
+3) Adobe Reader can be replaced with the free Foxit Reader.
+4) The newer versions of Internet Explorer (IE 10 and above) and Microsoft Edge are less resource intensive. If you have been using an older version, it is time to upgrade IE or replace it with either Mozilla Firefox or Google Chrome. This can also give you faster browsing speeds.
+5) The default Windows Media Player can be replaced with the VLC Media Player.
+
+
+Remove unnecessary startup programs
+
+msconfig start up  selective
+
+cleanmge.exe
+
+
+sysdm.cpl  Adjust for best performance.
+
+mmsys.cpl Sounds tab
+
+Windows Disk Cleanup cleanmgr.exe 
+
+services.msc Windows Search Disabled
+
+Change to High Performance power scheme
+
+
+chkdsk /r    
+y
+
+
+DISM.exe /Online /Cleanup-image /Restorehealth
+DISM.exe /Online /Cleanup-Image /RestoreHealth /Source:C:\RepairSource\Windows /LimitAccess
+sfc /scannow
+
+
+Check if your computer is overheating
+
+Windows Disk Defragmenter utility.
+Start Screen/ Menu
+
+++++++++++++++++windows reset+++++++++++++++++
+Update and Recovery
+Change PC Settings
+
+Reset your PC without affecting files,
+
+Get Started.
+
+
+Upgrade processor for high demand tasks
+If you regularly use your computer for high demand tasks (like converting videos or playing games) and feel your computer is lagging, it is best to upgrade your CPU to a powerful one as performance in these type of tasks is directly dependent on your processor's capabilities.
+
+Upgrade graphic card for graphic heavy applications
+Graphic heavy applications need a graphic processor to perform optimally. If you regularly use graphic heavy applications that your PC lags while handling, you must upgrade your graphic card as no amount of tweaking can help you beyond a certain point.
+
+Upgrade to a solid state HDD
+Although solid state hard drives are a lot faster for writing and reading data than older optical hard drives, their high price is something that keeps them out of the range of many. Still, if you do manage to get one for your PC, the change in speed will be immediately visible.
+
+If all else fails, get more RAM
+RAM or the Random Access Memory contains files of the currently running programs that are immediately required by the computer with capacity of the RAM being the limiting factor. Accessing files from RAM is much faster than doing the same from a hard disk. This means that more the RAM you have, more the programs you can run simultaneously without compromising on speed. RAM upgrades do not cost much and are one of the best ways to speed up a slow computer.
++++++++++++++++++++++++++++++++++++++
+windows os file error fix cmd
+DISM.exe /Online /Cleanup-image /Restorehealth
+DISM.exe /Online /Cleanup-Image /RestoreHealth /Source:C:\RepairSource\Windows /LimitAccess
+sfc /scannow

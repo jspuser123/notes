@@ -1,0 +1,268 @@
+frappe js
+
+
+person.as_dict()
+
+
+eval:(doc.type == 'Sell' || doc.type == 'Buy')            ++++++++++++++++>display depands
+
+eval:!(doc.__islocal)                                   ==============================>set only readble
+
+
+
+cur_frm.page.btn_secondary.hide()                  ===================>sec_btn hide
+
+
+1. frappe.new_doc("Purchase Invoice",{"company": "js company","bill_no" : "123","supplier" : "jagan",});   =====>new doc insert value
+
+2. doc = frappe.get_doc('Task', 'TASK00002')
+   doc.title = 'Test'
+   doc.save()
+3.frappe.db.insert({"doctype": "Contact","first_name": frm.doc.first_name,"last_name": frm.doc,last_name });
+
+
+4. frappe.db.get_list('Library Membership', {filters: {membership_type:"group",},fields: ['full_name'],}).then(res => {console.log("list===============>",res)
+
+let in1 = frappe.db.get_doc("Library Membership",frm.doc.library_member).then()
+
+5. task = frappe.get_last_doc('Task')
+
+
+
+frappe.ui.form.on('Library Transaction', 'onload',function(frm) {
+    // frm.toggle_display(['article','library_member','date','type'], frm.doc.type === 'Issued');
+    
+    frm.set_value("date", frappe.datetime.add_days(frappe.datetime.nowdate()));
+
+   })
+   
+  
+  
+for (var j of lis) 
+{
+console.log(j.name)
+
+}
+
+
+
+frappe.ui.form.on('Sales Order', 'onload', function(frm){
+    frm.set_value("delivery_date", frappe.datetime.add_days(frappe.datetime.nowdate(), 20));
+})
+
+frappe.datetime.add_days(date, days);   // add n days to a date
+frappe.datetime.add_months(date, months); // add n months to a date
+frappe.datetime.month_end(date);  // returns the first day from the month of the given date
+frappe.datetime.month_start(date); // returns the last day from the month of the given date
+frappe.datetime.get_day_diff(begin, end);
+
+
+
+
+table link option
++++++++++++++++==
+
+frappe.ui.form.on('child1', {
+	form_render: function(frm,cdt,cdn) {
+		console.log("welcome")
+
+
+	 }
+});
+
+
+
+
+https://www.youtube.com/watch?v=oCE2vLCh97w
+
+
+
+
+cur_frm.doc.table[0].accepted_qty
+
+
+frm.set_df_property(“myfield”, “read_only”, frm.doc.__islocal ? 0 : 1);
+
+
+
+frappe.model.set_value(cdt, cdn, “child_fieldname”, value);
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++custom button++++++++++++++++++++++++++++++++++++++
+
+frm.add_custom_button('Create Membership', () => {
+frappe.new_doc('Library Membership', {
+		library_member: frm.doc.date
+		})
+		}),
+
+
+frm.add_custom_button('print', function(){
+		frappe.msgprint(frm.doc.date);
+	}),
+
+
+
+
+frm.add_custom_button(__('Get User Email Address'), function(){
+            frappe.msgprint(frm.doc.total);
+        }, __("Utilities"));
+        
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++child get parent
+
+
+frappe.ui.form.on("Material Request Item", {
+      per_qty: function(frm, cdt, cdn) {
+        var d = locals[cdt][cdn];
+        frappe.model.set_value(d.doctype, d.name, 'amount', (d.qty * d.rate));
+        var total = 0; frappe.model.set_value(d.doctype, d.name, 'amount', (d.qty * d.rate));
+        frm.doc.items.forEach(function(d) {
+            total += d.amount;
+        });
+        frm.set_value('total_amount', total);
+    },
+    
+});
+
+
+
+// frappe.ui.form.on("Journal Entry Account",{
+
+// 	party: function(frm, cdt, cdn) {
+// 		var d1= locals[cdt][cdn]
+// 		console.log(d1.party)
+	
+// 		frm.set_value('purchase', d1.party);
+// 	}
+// });
+
+
+
+
+
+
+
+// frappe.call({
+// 	method: "frappe.core.doctype.user.user.get_all_roles", //dotted path to server method
+// 	callback: function(r) {
+// 		frappe.msgprint(('Document updated successfully',r));
+// 	}
+// });
+  
+  
+==========================dialog custom button++++++++++++++++++++++++++
+
+frappe.ui.form.on('Sales Order Item',{
+	splite_rate: function(frm, cdt, cdn) {
+		var d = locals[cdt][cdn];
+		// console.log(cdn,cdt,d.item_code,d.delivery_date,d.qty,d.rate,d.amount)
+		// frappe.model.set_value(cdt, cdn, 'amount', d.amount / 2);
+		// frappe.model.set_value(cdt, cdn, 'rate', d.rate / 2);
+		// let row = frm.add_child('items', {
+		// 	item_code:d.item_code,
+		// 	delivery_date:d.delivery_date,
+		// 	qty:d.qty,
+		// 	amount: d.amount,
+		// 	rate: d.rate			
+		// });
+		// frm.refresh_field('items');
+
+		let dia = new frappe.ui.Dialog({
+			title: 'Enter details',
+			fields: [
+				{
+					label: 'Delivery Date',
+					fieldname: 'date',
+					fieldtype: 'Date',
+					default: d.delivery_date,
+					
+				},
+		
+				{
+					label: 'Qty',
+					fieldname: 'qty',
+					fieldtype: 'Int',
+					default: d.qty
+				},
+				{
+					label: 'Table',
+					fieldname: 'table',
+					fieldtype: 'Table',
+					cannot_add_rows: true,
+					in_place_edit: false,
+					data: [{test:null,test1:d.delivery_date},{test:null,test1:d.delivery_date}
+				],
+					
+					fields: [
+							{ fieldname: 'test', fieldtype: 'Data', in_list_view: 1, label: 'Test' ,read_only: 0,reqd: 1},
+							{ fieldname: 'test1', fieldtype: 'Data', in_list_view: 1, label: 'Test1' ,read_only: 0,reqd: 1}
+							
+					
+					],
+			
+					}
+
+			],
+			primary_action_label: 'Submit',
+			primary_action(values) {
+				console.log(values);
+				var v =parseInt(values.table[0].test)+parseInt(values.table[1].test);
+				if (values.qty === v )
+				{
+					frappe.model.set_value(cdt, cdn, 'qty', values.table[0].test);
+					let row = frm.add_child('items', {
+							item_code:d.item_code,
+							delivery_date:d.delivery_date,
+							qty:values.table[1].test,
+							amount: d.amount,
+							rate: d.rate			
+						});
+					
+
+	
+						frm.refresh_field('items');
+					dia.hide();
+
+				}
+				else
+				{
+					frappe.msgprint(('This value not split'));
+				}
+				
+			}
+		});
+		
+		dia.show();
+		
+
+	}
+
+});
+
+paret to child
+
+// console.log(r.message['taxes'][1]['name']) ==child get
+
+//    alert(r.message)
+frm.set_value({
+		'customer':r.message['customer'],
+		'customer_name':r.message['customer_name'],
+		'order_type':r.message['order_type'],
+		'transaction_date':r.message['transaction_date'],
+		'delivery_date':r.message['delivery_date'],
+		'customer_address':r.message['customer_address'],
+		'address_display':r.message['address_display'],
+	})
+	
+	
+	
+	
+	
+
+
+

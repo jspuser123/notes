@@ -1,0 +1,7 @@
+cool fan
+
+10k NTC thermistor (or) any   NTC thermistor     3     -----> heat sensor
+100K Variable regsistor                          1
+1k  regsistor                                    1
+BD139 transistor                                 1
+IN4007 diode                                     1

@@ -1,0 +1,119 @@
+bill print languvage
+
+
+^XA
+^CF,10,20
+^PR12
+^LRY
+^MD30
+^PW799
+^LL406
+^PON
+^FO200,20^BY1^BCN,50,Y,N,N
+^FD1151803000268
+^FS
+^FS
+^FO100,90
+^CFN,30,30
+^FDK.P.R. MILL LIMITED(QK3)
+^FS
+^FO500,90
+^CFN,30,30
+^FS
+^CF,15,15
+^FO10,130
+^FDMfg Date: 12 sep'20
+^FS
+^FO410,130
+^FS
+^FO10,170
+^FDNet. Wt. : 100g
+^FS
+^FO410,170
+^FS
+^FO10,150
+^FDBest Before :11Dec'20
+^FS
+^FO410,150
+^FS
+^FO10,40
+^FS
+^FO410,40
+^FS
+^FO282,130
+^FDM.R.P
+^FS
+^FO682,130
+^FS
+^FO242,150
+^FD(inclusive all taxes)
+^FS
+^FO642,150
+^FS
+^FO272,170
+^FDRs. 45 /-
+^FS
+^FO672,170
+^FS
+^FO200,5
+^FDFSSAI NO: 1151803000268
+^FS
+^FO600,5
+^FS
+^PQ1
+^XZ
+
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+^XA
+^FO25,25^GB560,370,2^FS
+^FO80,30
+^CFN,30,40
+^FDESSDEE
+^FS
+^FO80,60
+^CFN,30,30
+^FD18-02-2023
+^FS
+^FO80,100
+^CFN,20,20
+^FDNo            : AW23-1773586
+^FS
+^FO80,130
+^CFN,20,20
+^FDFABRIC    : SINGLE TUCK PIQUE9(O/W)
+^FS
+^FO80,160
+^CFN,20,20
+^FDCOLOR    : 3-WHITE9(O/W)
+^FS
+^FO80,190
+^CFN,20,20
+^FDDia           : 26
+^FS
+^FO80,220
+^CFN,20,20
+^FDBill No     :12219754
+^FS
+^FO80,250
+^CFN,20,20
+^FDRoll No    :12
+^FS
+^FO280,190
+^CFN,20,20
+^FDGSM      :12
+^FS
+^FO280,220
+^CFN,20,20
+^FDLot No   :3
+^FS
+^FO280,250
+^CFN,20,20
+^FDR.Wt       :44.44
+^FS
+^FO80,280^BY3^BCN,60,,,,A^FD26547122197542612^FS
+^XZ

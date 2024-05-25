@@ -1,0 +1,53 @@
+django barchart
+
+from django.shortcuts import render
+import random
+# MatPlotLib
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
+import numpy as np
+# Pie Chart
+def barchart(request):
+    objects = ['12/10/2019','12/11/2020','15/10/2020']
+    y_pos = np.arange(len(objects))
+    qty = [10,20,25]
+    plt.bar(y_pos, qty, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Quantity')
+    plt.title('Sales')
+    plt.savefig('media/barchart.png')
+    return render(request,'barchart.html')
+    
+    
+    
+    
+    
+    
+from django.urls import path
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+urlpatterns=[
+    path('barchart',views.barchart,name='barchart')
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarChart with Matplotlib</title>
+</head>
+<body>
+    <h3>Barchart of Sales</h3>
+    <hr/>
+    <img src="./media/barchart.png" />
+</body>
+</html>
+ 

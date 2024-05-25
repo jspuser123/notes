@@ -1,0 +1,10 @@
+What to Know
+To locate your router’s IP address, in Windows, open a Command Prompt and run ipconfig. For Mac and Linux, run ip r.
+
+
+
+Using a router, open browser and enter router IP address > Enter > locate Device List > Status, or Bandwidth or Network Monitoring.
+
+
+
+In Wireshark, go to Capture > Capture packets in promiscuous mode > OK > Shark Fin to begin, let it run, then press Stop (square)

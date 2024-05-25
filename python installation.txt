@@ -1,0 +1,9 @@
+python installation
+
+officel website
+tar -xvf Python-3.x.x.tar.xz
+cd Python3.x.x
+./configure               or  ./configure --enable-optimizations
+make
+
+sudo make altinstall

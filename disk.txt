@@ -1,0 +1,10 @@
+diskmgmt.msc
+
+https://www.ipserverone.info/knowledge-base/replace-hdd-for-software-raid-in-windows-server/
+
+
+
+https://www.wikigain.com/configure-raid-in-windows-11/
+
+disk100
+https://www.cleverfiles.com/howto/100-disk-usage-windows-10.html

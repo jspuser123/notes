@@ -1,0 +1,20 @@
+from flask import Flask
+from flask import render_template
+from flask import make_response
+import pdfkit
+ 
+app = Flask(__name__)
+ 
+ 
+@app.route("/")
+def index():
+    name = "Giovanni Smith"
+    html = render_template(
+        "certificate.html",
+        name=name)
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+    return response
+ 

@@ -1,0 +1,41 @@
+wsl upuntu instaltion
+
+
+contrl pnl
+
+all programs
+
+turn on  windows fetures
+
+add wsl ======windows subsystem linux
+
+add virtical macine platfrom
+
+++++++++++++++++++++++++
+windows store
+
+
+1. windows subsystem install linux
+2. ubuntu and watever
+
+
+open powershell or cmd
+
+wsl -l -v
+
+
+wsl --list
+
+
+wsl --install -d Ubuntu-22.04
+
+wsl -l -v
+
+ok done
+
+
+
+
+
+
+

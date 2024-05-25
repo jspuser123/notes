@@ -1,0 +1,50 @@
+
+
+
+teamviewr
+
+
+###########################
+
+seyaga6831@galcake.com
+
+win123linux
+
+win123linuxwin
+
+
+
+
+https://login.teamviewer.com/Cmd/ActivateAccount?lng=en&token=df822dc0-59d1-4a57-8694-c621be4b806f
+
+
+
+
+
+
+
+ 
+            
+            
+           onload:function(frm) {
+		frm.toggle_display(['qty','date','type'], frm.doc.type === 'Buy');
+		frm.toggle_display(['qty','date','type'], frm.doc.type === 'Sell');
+		frm.toggle_display(['article','library_member','type','date'], frm.doc.type === 'Issued');
+		frm.toggle_display(['article','library_member','type','date'], frm.doc.type === 'Return');
+	 }
+
+
+
+frm.toggle_display(['type','qty','date'], frm.doc.type === 'Byer');
+
+
+
+   eval: function(frm) {
+
+    frm.toggle_display(['type','qty','date'],frm.doc.type === 'Buyer' );
+    }
+    
+    
+    
+
+

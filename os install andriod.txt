@@ -1,0 +1,18 @@
+os install andriod
+
+egrep -c '(vmx|svm)' /proc/cpuinfo
+8
+
+0 not enabled amt_VT virtical
+
+sudo apt-get install virt-manager
+iso download
+
+image disk create
+
+cmd:
+
+qemu-img create -f qcow2 androidx86_hda.img 15G
+
+
+virtical manger open config

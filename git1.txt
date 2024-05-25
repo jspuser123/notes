@@ -1,0 +1,55 @@
+git
+
+git init
+
+git add .
+
+git commit -m "Add all my files"
+
+git remote add origin https://github.com/jspuser123/kivymd.git
+
+git pull origin master
+
+++++++++++++++++++++++++
+
+git branch  
+git push -u origin customer_credit_report --no-thin  
+
+git token
+git remote add origin https://github.com/aerele/essdee.git
+
+
+
+
+
++++++++++++++++++++++++++++++
+change than branch from push
+ 
+git checkout origin/master 
+ 
+git fetch origin
+
+git checkout -b new-brach
+git push -u origin customer_credit_report2
+
+git push
+
++++++++++++++++++++++++++++++++++
+
+copy new branch from any branch
+
+git checkout origin/master
+git fetch origin
+git checkout -b feat-customer-group-credit-report2
+git cherry-pick 2561975a4245bfac9c3283b5de8fa931a517264e
+git push origin
+git push -u --help
+git push -u origin
+git push -u origin feat-customer-group-credit-report2
+
+++++++++++++++++++++++++++++++++++
+main ogigin update pull my branch connect see git rebase google
+git pull                           --download
+git rebase origin/master 
+git push 			-------------------------------->check file changes
+git push --force

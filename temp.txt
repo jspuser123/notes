@@ -1,0 +1,85 @@
+
+		{
+			"fieldname":"company",
+			"label": __("Company"),
+			"fieldtype": "Link",
+			"options": "Company",
+			"reqd": 1,
+			"default": frappe.defaults.get_user_default("Company"),
+			"read_only": 1
+		},
+		{
+            fieldname: 'period',
+            label: __('Period'),
+            fieldtype: 'Data',
+			default:'12',
+   
+        },
+        
+        
+        
+        
+        
+from essdee.essdee.report.customer_credit_report.customer_credit_report import execute as customer_credit
+col1= [
+		{
+		'fieldname': 'customer_group',
+		'label':('Customer Group'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': 'avg_payment_days',
+		'label': ('Avg Payment Days'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': 'payment_pending_days',
+		'label': ('Payment Pending Days'),
+		'fieldtype': 'Data',
+		},
+		
+		{
+		'fieldname': 'total_outstating_amount',
+		'label': ('Total Outstating'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': '0_30',
+		'label': ('0-30'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': '31_60',
+		'label': ('31-60'),
+		'fieldtype': 'Data',	
+		},
+		{
+		'fieldname': '61_90',
+		'label': ('61-90'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': '91_120',
+		'label': ('91-120'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': '120_above',
+		'label': ('120-above'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': 'previous_period',
+		'label':('Previous Period'),
+		'fieldtype': 'Data',
+		},
+		{
+		'fieldname': 'current_period',
+		'label':('Current Period'),
+		'fieldtype': 'Data',
+		},
+		
+		]
+	customer_credit_report=customer_credit(filters['company'],filters['period'])
+	customer_credit_report[1]
+

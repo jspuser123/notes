@@ -1,0 +1,13 @@
+android.permission.INTERNET
+
+
+requirements = kivy, android, openssl, pyopenssl, httplib2 
+android.permissions = INTERNET, ACCESS_NETWORK_STAT
+
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+p4a apk ... --blacklist-requirements=sqlite3

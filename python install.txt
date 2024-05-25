@@ -1,0 +1,15 @@
+python 3.7.11
+apt-get updatetar 
+tar -xvf Python-3.x.x.tar.xz
+./configure
+
+make
+sudo make install
+
+
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 3
+
+
+sudo update-alternatives --config python

@@ -1,0 +1,7 @@
+While logged in as domain-user, use Windows Explorer to browse to C:\Users\local-user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs You will see there the shortcuts (and folders for shortcuts) for the programs you can't find logged in as domain-user. You should be able to double-click these shortcuts to launch the programs, no harm in trying it to verify.
+
+You can then move these shortcuts (and shortcut folders) to be available to "all users" on the laptop by moving them to the folder: C:\ProgramData\Microsoft\Windows\Start Menu\Programs.
+
+Second task, eliminate the annoying the administrator prompts.
+
+Open Control Panel > Users > Change User Account Control settings (middle of window) --- move the slider at left all the way to the bottom "Never notify". You will be prompted for administrator credentials to confirm you want to do this.

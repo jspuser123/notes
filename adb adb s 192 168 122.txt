@@ -1,0 +1,36 @@
+adb
+adb -s 192.168.122.198:5555 install -r jeapp2-0.1-arm64-v8a_armeabi-v7a-debug.apk
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+adb shell pm list packages
+
+
+adb shell am set-debug-app -w com.microsoft.device.display.samples.masterdetail
+
+
+
+
+
+++++++++++++++++++++++++++crash cheack+++++++++++++++++++
+cd ~/Library/Android/sdk/platform-tools
+adb conect
+./adb connect 192.168.122.54:5555
+
+
+1.     adb logcat AndroidRuntime:E *:S
+
+2.     adb logcat -d CRASH:E :S
+
+
+3.     adb logcat -d > logs.txt
+
+	AndroidRuntime: FATAL EXCEPTION: main
+	
+4.     adb bugreport E:\Reports\MyBugReports
+
+
+adb logcat -s python 
+
+
+ buildozer -v android debug run logcat     

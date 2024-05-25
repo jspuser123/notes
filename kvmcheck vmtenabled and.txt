@@ -1,0 +1,19 @@
+kvmcheck vmtenabled and disable
+
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+
+kvm-ok
+sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils
+sudo adduser username libvirtsudo  
+sudo adduser js libvirt
+sudo apt install virt-manager 
+
+
+
+
+ sudo virsh net-autostart default                ===========>networkerror
+ 
+ 
+ egrep -c '(vmx|svm)' /proc/cpuinfo                        check vt
+

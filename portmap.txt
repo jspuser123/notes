@@ -1,0 +1,14 @@
+portmap
+
+
+js123
+
+yicapab999@proexbol.com
+
+H3nKzSg3NELKF8Y
+
+
+
+
+
+tcp://js123-58536.portmap.io:58536 => 5000 

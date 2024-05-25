@@ -1,0 +1,4 @@
+iso to vdi
+
+
+VBoxManage convertfromraw android-x86_64-9.0-r2.iso andriod.vdi --format='vdi'

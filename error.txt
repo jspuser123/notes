@@ -1,0 +1,12 @@
+error
+
+Library loading error: dlopen failed: "/data/app/org.test.jeapp2.jeapp2-Y-ofrP9H_Yr63Xa4NU05Hw==/lib/arm/libsqlite3.so" has unexpected e_machine: 40 (EM_ARM)
+An UnsatisfiedLinkError occurred loading sqlite3
+dlopen failed: "/data/app/org.test.jeapp2.jeapp2-Y-ofrP9H_Yr63Xa4NU05Hw==/lib/arm/libsqlite3.so" has unexpected e_machine: 40 (EM_ARM)
+
+Registering a buffer in the process that created it. This may cause memory ordering problems.
+
+
+
+jeapp2.jeapp: No implementation found for void org.libsdl.app.SDLActivity.nativeSetenv(java.lang.String, java.lang.String) (tried Java_org_libsdl_app_SDLActivity_nativeSetenv and Java_org_libsdl_app_SDLActivity_nativeSetenv__Ljava_lang_String_2Ljava_lang_String_2)
+

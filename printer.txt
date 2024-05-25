@@ -1,0 +1,26 @@
+printer
+
+
+
++++++++++++++++++++++++++++++++++++++++++priter flask++++++++++++++++++js
+function getPdf() {
+    window.print()
+}
+
+
+
+
+
+
+
+++++++++++++++++++++++python+++++++++++++++++++
+
+import cups
+conn = cups.Connection()
+
+# list the printers (don't need to do this if you already know the printer name)  
+printers = conn.getPrinters()
+print (printers)
+
+# print file - CUPS knows many image file formats, including PDF, so will accept them natively
+conn.printFile("HP-LaserJet-1022", "foo.pdf", "myjob", {})

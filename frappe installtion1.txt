@@ -1,0 +1,96 @@
+
+frappe installtion1
+
+
+apt install git python-dev python-pip redis-server
+
+apt-get update
+apt-get install mariadb-server mariadb-client
+
+mysql_secure_installation
+nano /etc/mysql/my.cnf
++++++++++++++++++++++++++++++++++++++++++++++++++
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+[mysql]
+default-character-set = utf8mb4
++++++++++++++++++++++++++++++++++++++++++++++
+service mysql restart
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash                         
+
+nvm install 14                                                  =============================nvm not install f1=chmod +x nvm.sh ,f2=bash,f3=nvm install 14 ,check node v 14
+
+git clone https://github.com/frappe/bench bench-repo
+sudo pip3 install -e bench-repo
+sudo pip3 install frappe-bench
+sudo apt install software-properties-common -y
+###    sudo add-apt-repository ppa:deadsnakes/ppa     ###
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+sudo apt install python3.10
+sudo apt install python3.10-dev
+
+bench init v13 --frappe-path https://github.com/frappe/frappe --frappe-branch version-13
+
+
+ERROR: Ignored the following versions that require a different python version: 5.1 Requires-Python >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <3.10; 5.2 Requires-Python >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <3.11; 5.2a1.dev0 Requires-Python >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <3.11
+
+python 3.7.11
+apt-get updatetar 
+tar -xvf Python-3.x.x.tar.xz
+./configure
+
+make
+sudo make install
+
+
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 3
+
+
+sudo update-alternatives --config python	
+
+bench init v13 --frappe-path https://github.com/frappe/frappe --frappe-branch version-13
+
+site first create error
+fix
+db open
+
+sudo mysql -u root -p
+GRANT ALL PRIVILEGES ON *.* TO "root"@"localhost" IDENTIFIED BY "123" WITH GRANT OPTION;
+sudo service mysql restart
+
+sudo service maraiadb restart
+
+bench new-site library.test
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+bench new-app library_management
+
+./env/bin/pip install -q -U -e ./apps/library_management
+
+bench build --app library_management
+
+####
+ bench new-site library.test
+ bench --site library.test add-to-hosts
+ bench --site library.test install-app library_management
+ bench --site library.test list-apps
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+bench get-app reconciler https://github.com/jspuser123/reconciler.git --branch=master
+
+bench get-app --branch version-13 erpnext
+bench get-app https://github.com/jspuser123/production_api.git
+
+bench get-app bench get-app https://github.com/jspuser123/production_api.git 
+
+
+bench set-config -g developer_mode true
+
+

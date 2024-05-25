@@ -1,0 +1,144 @@
+frappe python
+
+
+data = frappe.get_list("Library Membership")
+
+
+
+
+
+
+person.as_dict() ==========================all access
+
+
+person.table
+
+person.table[0].name
+
+person.table[0].rate
+
+ data[count1][str(m1)+str(data_cloumn_add.year)+'on_time']+=d1   same row add report
+ 
+ __________________________________________________________________________ajax___________________________________________________
+js:
+
+frappe.call({
+    method: "erpnext.crm.doctype.opportunity.opportunity.get_item_details",
+    args: {"item_code":d.item_code},
+    callback: function(r, rt) {
+    if(r.message) {
+       alert(r.message.item_name)
+    }
+})
+
+Python:
+
+@frappe.whitelist()
+def get_item_details(item_code):
+    item = frappe.db.sql("""select item_name, stock_uom, image, description, item_group, brand
+        from `tabItem` where name = %s""", item_code, as_dict=1)
+    return item.item_name
+________________________________________________________________________________________________________________________________
+hooks
+
+jenv = {
+    "methods": [
+        "sd_get_qty_in_boxes:essdee.essdee.utils.sales_invoice.sd_get_qty_in_boxes",
+		"sd_get_total_qty:essdee.essdee.utils.sales_invoice.sd_get_total_qty",
+		"sd_print_address:essdee.essdee.utils.journal_entry.sd_print_address"
+    ]
+}
+
+
+
+essdee.essdee.utils.journal_entry.sd_print_address ==file loaction
+
+
+import frappe
+from frappe.contacts.doctype.address.address import get_address_display
+
+@frappe.whitelist()
+def sd_print_address(id):
+    # doc = frappe.get_doc('Journal Entry', id)
+    # if doc.accounts[0].party_type == "Supplier" or doc.accounts[1].party_type == "Supplier":
+    #     sub=frappe.db.get_value("Supplier",(doc.accounts[0].party or doc.accounts[1].party),'supplier_primary_address') 
+    #     address_display = get_address_display(sub)
+    # elif doc.accounts[0].party_type == "Customer" or doc.accounts[1].party_type == "Customer":
+    #     sub=frappe.db.get_value("Customer",(doc.accounts[0].party or doc.accounts[1].party),'customer_primary_address') 
+    #     address_display = get_address_display(sub)
+    # else:
+    #     address_display = 'Supplier or Customer address is None'
+    
+    
+    
+    frappe.utils.get_last_day(date)            ================= last day per month
+    
+ ++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+data4=frappe.db.get_list('Library Membership', filters={"library_member":self.library_member,"membership_type":['in',['Individual','group','company']],},fields=['membership_type'])\
+
+data = frappe.get_list("Library Membership",)
+
+person = frappe.get_doc('Purchase Invoices', 'Purchase0000002')
+
+posting_date+= frappe.db.get_all("Sales Invoice",filters=[['posting_date', 'between', [startday, lasday]]],fields=['name','posting_date'])
+
+l=frappe.get_value('Sales Team',{'parent': invper.name}, 'sales_person') ========child table
+
+l1=frappe.get_value('Sales Order',slodname,'delivery_date')   
+
+esult12 = frappe.db.sql("SELECT `name`,`posting_date` FROM `tabSales Invoice` WHERE `posting_date` BETWEEN '"+str(startday)+"' AND '"+str(lasday)+"'")    ===sql
+
+q= frappe.qb.from_('Sales Invoice').select('posting_date') output( SELECT `posting_date` FROM `tabSales Invoice`)
+
+lname = frappe.qb.Field("name"),r=frappe.qb.from_("Sales Invoice").select("*").where(lname == 'SINV-23-00006'),n=frappe.db.sql(r)
+
+
+slinv = frappe.db.get_value('Sales Invoice', {"customer":customer,'status': ['in',['Credit Note Issued','Submitted','Paid','Partly Paid','Unpaid','Unpaid and Discounted','Partly Paid and Discounted','Overdue and Discounted','Overdue','Internal Transfer',]]}, ['posting_date','status'])
+
+total+=frappe.db.get_value('Sales Invoice',{'name':sl['name']},'grand_total')
+			
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+n<br>o<br>i<br>t<br>s<br>o<br>p<br>s<br>e<br>d<p>
+
+	# for slinv in slinv_list:
+		# 	if slinv['customer'] ==customer:		
+		# 		if 'Completed' == slinv.status:
+		# 			payment_pending=0
+		# 		else:
+		# 			maxarry.append(getdate(t)-slinv.posting_date)
+		
+		
+payment_pending=max(maxarry)
+
+
+
+doc = frappe.get_doc('Journal Entry', id)
+
+for x in doc.accounts:
+if x.party_type == "Supplier":
+    a = frappe.db.get_values("Dynamic Link",{"parentfield": "links","parenttype": "Address","link_doctype": "Supplier","link_name": name},"parent")
+    address_display = get_address_display(a[-1][0])
+elif x.party_type == "Customer":
+    a = frappe.db.get_values("Dynamic Link",{"parentfield": "links","parenttype": "Address","link_doctype": "Customer","link_name": name},"parent")
+    address_display = get_address_display(a[-1][0])
+    
+    
+
+   
+   # for i in customer_group_list:
+	# 	locals()['list_%s' % i] = [] # dyanamic name list create
+
+	# for j in customer_group_list:
+	# 	for i in customer_credit_report[1]:
+	# 		if i['customer_group'] ==j:
+	# 			locals()['list_%s' % j].append(i)
+	# for k in customer_group_list:
+	# 	obj=0
+	# 	for l in locals()['list_%s' % k]:
+	# 		obj+=l['current_period']

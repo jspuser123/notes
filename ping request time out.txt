@@ -1,0 +1,14 @@
+
+
+
+You should perform a power cycle to fix any possible connection error from your end.
+
+Power off the modem, router, and other network devices connected to your LAN
+Disconnect the Ethernet cables and power cables from Modem, Router, PC, etc.
+Clean the cables if they are rusty and connect them back properly
+Power on the devices
+Disable the firewall on your machine and try to ping Google DNS address 8.8.8.8 Check whether you get the Request Timed Out again.
+
+Try to ping 8.8.8.8 from another machine directly connected to the modem.
+
+If you are getting intermittent Request Timed Out from the machine with direct connection to the modem, I suspect the problem is with ISP.

@@ -1,0 +1,75 @@
+<script type="text/javascript">
+$(document).ready(function(){
+ $('[data-toggle="tooltip"]').tooltip();
+var actions=$("table td:last-child").html();
+
+ $(".add-new").click(function(){
+  $(this).attr("disabled","disabled");
+
+  var index =$("table tbody tr:last-child").index();
+  var row ='<tr>'+
+            '<td><input type="text" class="from-contol" name="movement_id" id="txtmovement_id"></td>'+
+            '<td><input type="text" class="from-contol" name="date" id="txtdate"></td>'+
+            '<td><input type="text" class="from-contol" name="from_location" id="txtfrom_location"></td>'+
+            '<td><input type="text" class="from-contol" name="to_location" id="txtto_location"></td>'+
+            '<td><input type="text" class="from-contol" name="product_id" id="txtproduct_id"></td>'+
+            '<td><input type="text" class="from-contol" name="qty" id="txtqty"></td>'+
+            '<td>' + actions + '</td>'+
+            '<tr>';
+              $("table").append(row)
+              $('table tbody tr').eq(index +1)+find(".add,.edit").toggle();
+              $('[data-toggle="tooltip"]').tooltip();
+
+ }) 
+})
+
+
+
+</script>
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+var data = {"data": "data"}
+$.ajax({
+    type: 'POST',
+    contentType: 'application/json',
+    url: '/isChat',
+    dataType : 'json',
+    data : JSON.stringify(data),
+    success : (data) => {
+        console.log('isChat response: ' + data)
+    },
+    error : (data) => {
+        console.log(data)
+    }
+});
+
+********************************************
+
+
+
+@application.route('/isChat', methods=['POST'])
+def isChat():
+
+    request_data = request.get_json()
+
+    data = request_data['data']
+
+    # DO SOME WORK ...
+
+    toReturn = {"return": "True"}
+
+    return jsonify(toReturn)
+    
+    
+
+  var dialog = document.getElementById('secDialog');    
+      document.getElementById('edit1').onclick = function() {    
+          dialog.show();    
+      }; 
+
+      document.getElementById('hide1').onclick = function() {    
+        dialog.close();    
+    }; 
+

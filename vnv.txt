@@ -1,0 +1,4 @@
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+
+
+ & ./flaskvnv/Scripts/Activate.ps1

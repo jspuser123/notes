@@ -1,0 +1,14 @@
+frappe db
+
+frappe.db.get_list('Library Membership',fields=['full_name', 'paid'],)
+
+
+frappe.db.get_list('Library Membership',fields=['full_name',],filters={'paid':['=','0']})
+
+
+
+ 
+ 
+ 
+ 
+ select library_member,membership_type from `tabLibrary Membership` where  membership_type = 'group' OR  membership_type = 'company';

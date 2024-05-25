@@ -1,0 +1,17 @@
+npx create-react-app my-react-app
+cd my-react-app
+
+
+
+native
+
+npx react-native init MyTestApp
+
+npx create-expo-app AwesomeProject
+
+cd AwesomeProject
+npx expo start
+
+
+
+

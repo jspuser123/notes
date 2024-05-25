@@ -1,0 +1,113 @@
+windows use build apk
++++++++++++++++++++++
++++++++++++++++++++++
+download necessory files
+
+1.flutter new version
+2.andriod_sdk
+3.SDK_VERSION=android-33
+4.NDK_VERSION=25.2.9519653
+5.flet
+6.cython
+7.java
++++++++++++++++++++++
+1.flutter 
+
+download windows an andriod 
+c:\flutter
+
+add path
+C:\flutter\bin
+
+flutter doctor -v  
+++++++++++++++++++++++
+7.java
+https://www.oracle.com/in/java/technologies/downloads/#jdk17-windows
+path
+                                                                                                                                          
+JAVA_HOME
+C:\Program Files\Common Files\Oracle\Java\javapath
+
+java -version
++++++++++++++++++++++
+andriod sdk
+download
+
+cmdline-tools
+https://developer.android.com/studio
+
+platform-tools
+https://developer.android.com/tools/releases/platform-tools
+
+create dir andriod-sdk
+move
+cmdline-tools
+platform-tools
+
+cmdline-tools open source file
+then version chk 12.0
+this version create dir bin file move
+
+add path env then chk
++++++++++++
+set env
+++++++
+ANDROID_HOME  = D:\it\softwere_build\flet_soft\android-sdk
+
+ANDROID_SDK_ROOT = D:\it\softwere_build\flet_soft\android-sdk
+
+path
+++++
+D:\it\softwere_build\flet_soft\android-sdk\platform-tools
+D:\it\softwere_build\flet_soft\android-sdk\cmdline-tools\12.0\
+D:\it\softwere_build\flet_soft\android-sdk\cmdline-tools\12.0\bin
+
+sdk root path error
+D:\it\softwere_build\flet_soft\android-sdk\cmdline-tools\12.0\bin\sdkmanger.bat --sdk_root=D:\it\softwere_build\flet_soft\android-sdk\cmdline-tools\12.0\bin
+sdkmanager --licences
+y
+sdkmanager --list
+
+platform-tools | 35.0.0 > next cmd > sdkmanager "platforms;android-33"
+
+sdkmanager --update
+
+sdkmanger --install ndk-version "25.2.9519653" ==flet chage version chk
+
+++++++++++
+python3 -m venv .venv
+source .venv/bin/activate
+flet create my_flet_app
+cd my_flet_app
+flet run main.py
+flet run --web main.py
+
+devlop mode enable
+++++++++
+start ms-settings:developers 
+
+flet bulid apk
+
++++++++++++++++++++++++++++++++++++
+another way
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
+pip install --upgrade cython
+p4a create --requirements numpy --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+$HOME/.python-for-android/dists/mydist
+export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+testing
+emulater
+list emulter
+sdkmanager "system-images;android-30;google_apis;x86_64"
+sdkmanager --channel=3 emulator
+avdmanager create avd -n emulator30 -k "system-images;android-30;google_apis;x86_64" -g "google_apis"
+emulater path
+
+list emulator
+emulator -list-avds
+
+run
+emulator -avd emulator30

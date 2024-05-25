@@ -1,0 +1,17 @@
+mac mail fix
+
+`/Library/Containers/Mail.mail/Data/Library/Peeferences
+
+restart
+connection doctor
+show and hide
+
+commad+space
+activaty moniter
+mail close
+
+mail attacent clean junk
+
+
+
+https://mackeeper.com/blog/fix-mac-mail-not-working/#:~:text=To%20fix%20Mail%20on%20Mac%2C%20all%20you%20need,Finder%20to%20the%20Dock%20to%20update%20the%20icon.

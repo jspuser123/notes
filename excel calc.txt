@@ -1,0 +1,11 @@
+excel
+
+total ===    =SUM(A1:A4)
+
+multi row ===  =A2*B2 
+
+count ===    =COUNT(C1:C4) 
+
+avg      =AVERAGE(C2, C3, C4)
+
+len word =len(a4)

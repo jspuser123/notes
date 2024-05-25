@@ -1,0 +1,3 @@
+Viewer viewer = new Viewer();
+viewer.setupViewer();
+viewer.executeCommand(ViewerCommands.OPENFILE, "pdfFile.pdf");

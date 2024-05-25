@@ -1,0 +1,22 @@
+api
+
+
++++++++++++++++++++++++++++++++++++++++++
+api
+
+http://192.168.0.102:8001/api/method/testapp.test.doctype.sales_order1.sales_order1.sales_test
+
+auth
+goto frappe user list administrator=api acesss (user pass)apply wep
+run postman
+
+token a0b692084ee14da:cea138281b485bc
+
+body
+{
+    "name": "js","tittle":"123","customer":"arun","customer_name":"Sales","order_type":"Sales","transaction_date":"2023-05-26"
+}
+@frappe.whitelist(allow_guest=True)
+def sales_test(**kwargs):
+    kwargs['transaction_date']
+    

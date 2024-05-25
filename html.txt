@@ -1,0 +1,240 @@
+<html>
+<head></head>
+<body>
+<table>
+
+<tr>
+    <th colspan="9" class="text-center">Invoices</th>
+</tr>
+
+<tr>
+    <td colspan="3" rowspan="5">Address:</td>
+    <td colspan="6">Qty NO:</td>
+</tr>
+
+<tr>
+
+    <td colspan="6">Alfreds</td>
+</tr>
+
+<tr>
+    
+    <td colspan="6">Alfreds</td>
+</tr>
+<tr>
+   
+    <td colspan="6">Alfreds</td>
+</tr>
+<tr>
+   
+    <td colspan="6">Alfreds</td>
+</tr>
+<tr>
+    <td colspan="3">Contact preson:</td>
+    <td colspan="6">Alfreds</td>
+</tr>
+  
+  <tr>
+    <th>S.No</th>
+    <th>Party type</th>
+    <th>party</th>
+    <th>HSN</th>
+    <th>qty</th>
+    <th>tax rate</th>
+    <th>CGST</th>
+    <th>SGCT</th>
+    <th>Amount</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+    <td>123</td>
+    <td>4000.00</td>
+    <td></td>
+    <td></td>
+    <td>4000.00</td>
+  </tr>
+  <tr>
+     <td>2</td>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+    <td>123</td>
+    <td>4000.00</td>
+    <td>12</td>
+    <td>12</td>
+    <td></td>
+    
+  </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <td colspan="4">Centro comercial Moctezuma</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <th colspan="4">Centro comercial Moctezuma</th>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<tr style="height:70px">
+    <td colspan="5"></td>
+    <td colspan="4"></td>
+ </tr>
+ <tr style="height:70px">
+    <td colspan="5"></td>
+    <td colspan="4"></td>
+ </tr>
+   <tr style="height:30px">
+    <td colspan="9"></td>
+   
+ </tr>
+  
+
+</table> 
+
+
+</body>
+</html>
+
+++++++++++++++++++++++++++++++++++++++++
+css
+
+
+table, th, td {
+  border: 1px solid black;
+  width:100%;
+  text-align: left;
+}
+
++++++++++++++++++++++++++++++++++++++++++++++
+full finesh table +jinja
+
+<html>
+<head></head>
+<body>
+<table>
+
+<tr>
+    <th colspan="9" class="text-center">Invoices</th>
+</tr>
+
+<tr>
+    <td colspan="3" rowspan="5">Address:<br>{{doc.supplier}}</br>{{doc.address_display}}</td>
+    <td colspan="3">Qty No:</td>
+    <td colspan="3">{{doc.bill_no}}</td>
+</tr>
+
+<tr>
+
+    <td colspan="3">Qtn Date:</td>
+    <td colspan="3">{{doc.posting_date}}</td>
+</tr>
+
+<tr>
+    
+    <td colspan="3">Enquiry Number:</td>
+    <td colspan="3">{{doc.bill_no}}</td>
+</tr>
+<tr>
+   
+    <td colspan="3">Enquiry Date :</td>
+    <td colspan="3">{{doc.due_date}}</td>
+</tr>
+<tr>
+   
+    <td colspan="3">sales Excutive :</td>
+    <td colspan="3"></td>
+</tr>
+<tr>
+    <td colspan="3">Contact preson:{{doc.contact_display}}</td>
+    <td colspan="3">Notes:</td>
+    <td colspan="3"></td>
+</tr>
+  
+  <tr>
+    <th>S.No</th>
+    <th>Items</th>
+    <th>Item_code</th>
+    <th>Rate</th>
+    <th>qty</th>
+    <th>tota tax</th>
+    <th>CGST</th>
+    <th>SGCT</th>
+    <th>Amount</th>
+  </tr>
+  
+  {% for x in doc.items   %}
+  <tr>
+   
+    <td >{{loop.index}}</td>
+    <td>{{x.item_name}}</td>
+    <td>{{x.item_code}}</td>
+    <td>{{x.base_rate}}</td>
+    <td>{{x.qty}}</td>
+    {% set doc1 = frappe.get_doc('Account', x.item_tax_template) %}
+    {%set data = 0.01*doc1.tax_rate %}
+    <td>{{data*x.amount+data*x.amount}}</td>
+    <td>{{data*x.amount}}</td>
+    <td>{{data*x.amount}}</td>
+    <td>{{x.amount+data*x.amount+data*x.amount}}</td>
+    
+  </tr>
+  {%- endfor -%}
+  
+    <tr>
+    <td></td>
+    <td></td>
+    <td colspan="4">We Declare that this invoice shows</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+    <tr>
+    <td></td>
+    <td></td>
+    <th colspan="4">In Words:{{doc.base_in_words}}</th>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<tr style="height:70px">
+    <td colspan="5">
+        Payment Terms:
+        <br>Delivery Terms:</br>
+        Mode of Despatch:
+        <br>Delivery Date:</br>
+    </td>
+    <td colspan="4"></td>
+ </tr>
+ <tr style="height:70px">
+    <td colspan="5">E&OE</td>
+    <td colspan="4">for Mrs ALLTRONIX Authorised Signatory</td>
+ </tr>
+   <tr style="height:30px">
+    <td colspan="9"  class="text-center">This is a computer generated Documnet,Does not require signature</td>
+   
+ </tr>
+  
+
+</table> 
+
+</body>
+</html>
+
+
+++++++++++++++++
+table, th, td {
+  border: 1px solid black;
+
+  text-align: left;
+}
+
+++++++++++++
