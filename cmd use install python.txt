@@ -1,0 +1,17 @@
+
+
+I have used windows powershell to achieve this..
+
+    Download Python Exe File..Feel free to edit 'URI' for the updated version of python & outFile for your preferred windows location
+
+    Invoke-WebRequest -UseBasicParsing -Uri 'https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe' -OutFile 'c:/veera/python-3.11.0-amd64.exe'
+
+    install python via command prompt
+
+    .\python-3.11.0-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+
+    set python location
+
+    setx /M path "%path%;C:\Program Files\Python311"
+
+    $env:PATH =$env:PATH+";C:\Program Files\Python311"
