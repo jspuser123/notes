@@ -1,0 +1,3 @@
+docker fix
+sudo systemctl restart docker && docker version && sudo systemctl stop docker && sudo dockerd --debug && sudo rm -rf /var/run/docker/runtime-runc/moby/docker_id && sudo apt-get remove docker docker-engine docker.io containerd runc && sudo apt-get install docker-ce docker-ce-cli containerd.io
+

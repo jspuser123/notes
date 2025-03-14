@@ -31,7 +31,25 @@ wsl --install -d Ubuntu-22.04
 
 wsl -l -v
 
+
+port cahenge
+sudo apt install openssh-server
+sudo nano /etc/ssh/sshd_config
+Port 5555
+ssh-keygen -t rsa -b 4096 -C "manoch@xtown.com"
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+ssh user@150.242.201.153 -p 5555
+ssh xt@150.242.201.153 -p 5555
+sudo passwd
+sudo service ssh restart
+
+
+
 ok done
+sudo apt install openssh-server
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=5555 connectaddress=127.0.0.1 connectport=22
+netsh advfirewall firewall add rule name="WSL SSH" dir=in action=allow protocol=TCP localport=5555
 
 
 
