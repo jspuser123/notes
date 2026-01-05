@@ -1,0 +1,106 @@
+cd "C:\Program Files\OpenVPN\easy-rsa"
+init-config.bat
+
+++++++++++++important+++++++++++++++++++++++++++++++
+openssl-1.0.0.cnf open change default_md = md5 to default_md = sha256
+++++++++++++++++++++++++++++vars.bat++++++open config++++++++
+set KEY_COUNTRY=IN
+set KEY_PROVINCE=CA
+set KEY_CITY=TN
+set KEY_ORG=MORPHO
+set KEY_EMAIL=mail@host.domain
+set KEY_CN=server
+set KEY_NAME=my-server
+set KEY_OU=morpho
+set PKCS11_MODULE_PATH=changeme
+set PKCS11_PIN=1234
+set KEY_ALGO=RSA
+set KEY_SIZE=2048
+set KEY_CONFIG=openssl-1.0.0.cnf
+set KEY_DIGEST=sha256
+++++++++++++++++++++
+vars.bat
+clean-all.bat
+build-ca.bat
+.\build-key-server.bat server
+.\build-key.bat client1
+.\build-dh.bat
+
+copy "C:\Program Files\OpenVPN\sample-config\server.ovpn" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\ca.crt" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\server.crt" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\server.key" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\dh2048.pem" "C:\Program Files\OpenVPN\config"
+
+++++++++++++++++server ovpn+++++++++++++
+port 1194
+proto udp
+dev tun
+server 10.8.0.0 255.255.255.0
+ca "C:\\Program Files\\OpenVPN\\config\\ca.crt"
+cert "C:\\Program Files\\OpenVPN\\config\\server.crt"
+key "C:\\Program Files\\OpenVPN\\config\\server.key"
+dh "C:\\Program Files\\OpenVPN\\config\\dh2048.pem"
+push "redirect-gateway def1"
+push "dhcp-option DNS 8.8.8.8"
+keepalive 10 120
+comp-lzo
+persist-key
+persist-tun
+verb 3
++++++++++++++++++++++++++++++++++++++++++
+Internet -> Network and Sharing Center -> Change adapter settings
+shared network
+
+REGEDIT.exe
+HKEY_LOCAL_MACHINE \ SYSTEM \ CurrentControlSet \ Services \ Tcpip \
+IPEnableRouter variable 1
+
+Services
+Open VPN -> right-click -> Properties -> Start: Automatic
+
++++++++++++++++++++++++++++++++++++++++++++++++
+Open VPN Client Configuration
++++++++++++++++++++++++++++++++++++++++++++++++
+copy "C:\Program Files\OpenVPN\sample-config\client.ovpn" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\ca.crt" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\client1.key" "C:\Program Files\OpenVPN\config"
+copy "C:\Program Files\OpenVPN\easy-rsa\keys\client1.crt" "C:\Program Files\OpenVPN\config"
+
+++++++++++++++++++fils++++++++++++++++++++++++
+client.ovpn open ->
+remote 83.166.241.155 1194
+ca "C:\\Program Files\\OpenVPN\\config\\ca.crt"
+cert "C:\\Program Files\\OpenVPN\\config\\client1.crt"
+key "C:\\Program Files\\OpenVPN\\config\\client1.key"
+
++++++++++++++++++++++++++++++++++++++++++++++++
+check ssl error server
+openssl x509 -in "C:\Program Files\OpenVPN\config\client1.crt" -text -noout | findstr "Signature Algorithm"
++++++++++++++++++++++++++++++++++++++++++++++++
+one file convert client
+client
+nobind
+dev tun
+key-direction 1
+remote-cert-tls server
+
+remote 192.168.2.115 1194 udp
+
+<key>
+-----BEGIN PRIVATE KEY-----
+-----END PRIVATE KEY-----
+</key>
+<cert>
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+</cert>
+<ca>
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+</ca>
+
+key-direction 1
+
+cipher AES-128-CBC
++++++++++++++++++++++++++++++++++++++++++++++++++
