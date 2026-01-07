@@ -52,12 +52,28 @@ verb 3
 Internet -> Network and Sharing Center -> Change adapter settings
 shared network
 
+
+
 REGEDIT.exe
 HKEY_LOCAL_MACHINE \ SYSTEM \ CurrentControlSet \ Services \ Tcpip \
 IPEnableRouter variable 1
+or
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v IPEnableRouter /t REG_DWORD /d 1 /f
 
+not nessory
+push "route 192.168.2.0 255.255.255.0" or push "route 10.8.0.0 255.255.255.0"
 Services
 Open VPN -> right-click -> Properties -> Start: Automatic
+
+allow firewall server
+netsh advfirewall firewall add rule name="Allow VPN to LAN" dir=in action=allow protocol=any localip=192.168.2.115 remoteip=10.8.0.0/24
+
+allow firewall client
+netsh advfirewall firewall add rule name="Allow LAN to VPN" dir=in action=allow protocol=any localip=192.168.2.158 remoteip=10.8.0.0/24
+
+netsh routing ip nat add interface "Local Area Connection" full
+
+
 
 +++++++++++++++++++++++++++++++++++++++++++++++
 Open VPN Client Configuration
@@ -103,4 +119,59 @@ remote 192.168.2.115 1194 udp
 key-direction 1
 
 cipher AES-128-CBC
+
 +++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++server ovpn+++++++++++++++++2.4.12 win 7 
+port 1194
+proto udp
+dev tun
+server 10.8.0.0 255.255.255.0
+
+ca "ca.crt"
+cert "server.crt"
+key "server.key"
+dh "dh.pem"
+
+push "route 10.8.0.0 255.255.255.0"
+push "redirect-gateway def1"
+push "dhcp-option DNS 8.8.8.8"
+
+keepalive 10 120
+auth SHA256
+compress lz4
+persist-key
+persist-tun
+verb 3
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++client ovpn+++++++++++++++++++++2.4.12 win 10
+client
+dev tun
+proto udp
+remote 192.168.2.115 1194
+nobind
+
+auth SHA256
+compress lz4
+
+ca "ca.crt"
+cert "client1.crt"
+key "client1.key"
+
+remote-cert-tls server
+persist-key
+persist-tun
+verb 3
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+no pass config EasyRSA 3.2.5
+./easyrsa init-pki
+./easyrsa build-ca nopass
+./easyrsa build-server-full server nopass
+./easyrsa build-client-full client1 nopass
+./easyrsa gen-dh
+
+
+++++++++++check+++++++++++++++++++++++
+openssl rsa -in pki/private/client1.key -check
+++++++++++++++++++++++++++++++++++++++
+
