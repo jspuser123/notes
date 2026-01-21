@@ -1,0 +1,9 @@
+port map io
+
+ngrok
+
+ssh -p 443 -R0:127.0.0.1:5000 qr@free.pinggy.io
+
+https://localtonet.com
+
+manullay router
