@@ -61,7 +61,7 @@ or
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v IPEnableRouter /t REG_DWORD /d 1 /f
 
 not nessory
-push "route 192.168.2.0 255.255.255.0" or push "route 10.8.0.0 255.255.255.0"
+push "route 10.8.0.0 255.255.255.0"
 Services
 Open VPN -> right-click -> Properties -> Start: Automatic
 
@@ -73,7 +73,13 @@ netsh advfirewall firewall add rule name="Allow LAN to VPN" dir=in action=allow 
 
 netsh routing ip nat add interface "Local Area Connection" full
 
-
+not nessorry local ip ping:
++++++++++++++
+netsh interface ipv4 set interface "Ethernet" forwarding=enabled
+push "route 192.168.2.0 255.255.255.0"
+netsh routing ip nat add interface "Ethernet" full
+netsh routing ip nat add interface "Local Area Connection" private
+route add 10.8.0.0 mask 255.255.255.0 192.168.2.115
 
 +++++++++++++++++++++++++++++++++++++++++++++++
 Open VPN Client Configuration
@@ -174,4 +180,31 @@ no pass config EasyRSA 3.2.5
 ++++++++++check+++++++++++++++++++++++
 openssl rsa -in pki/private/client1.key -check
 ++++++++++++++++++++++++++++++++++++++
+
+
+set interface static cmd
+++++++++++++++++++++
+add 
++++++++++++++++++++++++
+"C:\Program Files\TAP-Windows\bin\addtap.bat"
+
+Remove
+++++++
+"C:\Program Files\TAP-Windows\bin\deltapall.bat"
+
+
+static ip add
+++++++
+netsh interface ip set address "Local Area Connection" static 10.8.0.1 255.255.255.0
+
+netsh interface ip add dns "Local Area Connection" 8.8.8.8 index=1
+
+netsh interface ip add dns "Local Area Connection" 8.8.4.4 index=2
+
+
+dyanimic
+++++++++
+netsh interface ip set address "Interface Name" dhcp
+netsh interface ip set dns "Interface Name" dhcp
+
 
