@@ -1,11 +1,11 @@
 ## Kubernetes Native Deployment on EC2
-#Create 2 instances:
+Create 2 instances:
 
 1 × Master Node
 
 1 × Worker Node
 
-Recommended:
+### Recommended:
 
 OS: Ubuntu 22.04
 
@@ -18,7 +18,10 @@ Open ports (Security Group):
 6443 (Kubernetes API)
 
 30000–32767 (NodePort range)
-
+## IAM Roles:
+    Attach roles with permissions for EBS (AmazonEBSCSIDriverPolicy) 
+    and EC2 (AmazonEC2FullAccess)
+    and ELB (ElasticLoadBalancingFullAccess).
 ## 2. COMMON SETUP (Run on BOTH Master & Worker)🧱 
 ```sh
 # Update system
@@ -52,6 +55,7 @@ sudo sysctl --system
 sudo apt install -y docker.io
 sudo systemctl enable docker
 sudo systemctl start docker
+sudo docker login -u <username> -p <password>
 ```
 # Install Kubernetes
 ```sh
@@ -95,6 +99,7 @@ kubectl get nodes
 ```
 ## 7.storage
 ```sh
+# create folder use local storage
 sudo mkdir -p /data
 sudo chmod 777 /data
 ```
@@ -131,8 +136,8 @@ Access via NodePort
 
 ✅ Add Ingress + domain + HTTPS
 ***
-## 1 Convert this to PersistentVolume (EBS)
-```sh
+## 1 Convert this to PersistentVolume (EBS → PV)
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -140,12 +145,14 @@ metadata:
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
 parameters:
-  type: gp3
+  type: gp3          # Volume type (gp2, gp3, io1, io2)
+  fsType: ext4       # File system type (optional, default is ext4)
+  encrypted: "true"
 ```
-**kubectl apply -f storageclass.yaml**
+***kubectl apply -f storageclass.yaml***
 
 ## 2. Create PersistentVolumeClaim (PVC) 
-```sh
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -156,7 +163,7 @@ spec:
   storageClassName: ebs-sc
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
 ```
 **kubectl apply -f pvc.yaml**
 ## 3.Update Deployment (IMPORTANT)
@@ -170,13 +177,13 @@ volumes:
   persistentVolumeClaim:
     claimName: ecom-pvc
 ```
-**kubectl apply -f ecom.yaml**
+***kubectl apply -f ecom.yaml***
 
 ## PART 1 — Install Ingress Controller (NGINX)
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 ```
-**kubectl get pods -n ingress-nginx**
+***kubectl get pods -n ingress-nginx***
 ## PART 2 Extenal ip
 ```sh
 kubectl get svc -n ingress-nginx
@@ -187,10 +194,18 @@ kubectl get svc -n ingress-nginx
 ```sh
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
 
-#kubectl get pods -n cert-manager
 ``` 
-## part 4 — Create ClusterIssuer (Let’s Encrypt)
+***kubectl get pods -n cert-manager***
+# Create Certificate
 ```sh
+openssl req -x509 -newkey rsa:4096 -keyout my-key.key -out my-cert.crt -days 365 -nodes -subj "/CN=your-ip-address"
+kubectl create secret tls ecom-tls --cert=my-cert.crt --key=my-key.key
+# delete keys
+# kubectl delete secret ecom-tls 
+```
+
+## part 4 — Create ClusterIssuer (Let’s Encrypt)
+```yaml
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
@@ -206,16 +221,18 @@ spec:
         ingress:
           class: nginx
 ```
-**kubectl apply -f issuer.yaml**
+***kubectl apply -f issuer.yaml***
 
 ## part 5 Create Ingress for your app
-```sh
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ecom-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
