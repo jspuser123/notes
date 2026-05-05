@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  app:
+    image: image or image id
+    container_name: app
+    expose:
+      - "5000"  # port to expose
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - ./privkey.pem:/etc/ssl/certs/privkey.pem:ro
+    depends_on:
+      - app

@@ -207,4 +207,48 @@ dyanimic
 netsh interface ip set address "Interface Name" dhcp
 netsh interface ip set dns "Interface Name" dhcp
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# openvpn install server
+
+EasyRSA 3.2.5 download
+https://github.com/OpenVPN/easy-rsa/
+
+++++++++++++++++++++++++without pass+++++++++++++++++++++++++++++++++++++++
+cd C:\Program Files\OpenVPN\easy-rsa
+easyrsa init-pki
+easyrsa build-ca nopass
+easyrsa build-ca
+easyrsa build-server-full server nopass
+easyrsa build-client-full client1 nopass
+easyrsa gen-dh
++++++++++++++++++++++++with pass++++++++++++++++++++++++++++++++++++++++++
+cd C:\Program Files\OpenVPN\easy-rsa
+easyrsa init-pki
+easyrsa build-ca nopass
+easyrsa build-ca
+easyrsa build-server-full server
+easyrsa build-client-full client1
+easyrsa gen-dh
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+openssl rsa -in pki/private/client1.key -check
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Files
+For server:
+
+pki/ca.crt
+
+pki/issued/server.crt
+
+pki/private/server.key
+
+pki/dh.pem
+
+For client:
+
+pki/ca.crt
+
+pki/issued/client1.crt
+
+pki/private/client1.key

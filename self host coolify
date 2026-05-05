@@ -1,0 +1,7 @@
+curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
+
+sudo docker stop coolify coolify-db coolify-proxy coolify-sentinel coolify-redis coolify-realtime 
+
+sudo docker start coolify coolify-db coolify-proxy coolify-sentinel coolify-redis coolify-realtime
+
+docker exec -it coolify-redis redis-cli

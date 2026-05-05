@@ -19,4 +19,18 @@ body
 @frappe.whitelist(allow_guest=True)
 def sales_test(**kwargs):
     kwargs['transaction_date']
-    
+
++++++++++++++++++++++++++++++++++++++++++
+import requests
+import json
+url = 'http://192.168.0.102:8001/api/method/testapp.test.doctype.sales_order1.sales_order1.sales_test'
+payload = {
+    "name": "js","tittle":"123","customer":"arun","customer_name":"Sales","order_type":"Sales","transaction_date":"2023-05-26"
+}
+headers = {
+    'Authorization': 'Bearer a0b692084ee14da:cea138281b485bc'
+}
+response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
+print(response.text)
+
++++++++++++++++++++++++++++++++++++++++++

@@ -1,3 +1,19 @@
 
 pip install falsk
 pip install -U flask-paginate
+
+pip install -r requirements.txt
+flask db init
+flask db migrate
+flask db upgrade
+flask app=app.py run
+
+
+flask db revision --rev-id e39d16e62810  
+flask db migrate  
+flask db upgrade
+
+ids=[1,2,3,5]  
+User= User.query.filter(User.id.in_(ids))
+valid_mail=ecom_user.query.filter((ecom_user.ecom_user_name==request.form.get("reg_user_name"))|(ecom_user.ecom_user_email==request.form.get("reg_user_email"))).first()
+valid_mail =or cmd

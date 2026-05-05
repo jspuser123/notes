@@ -1,1 +1,10 @@
+# PID
+ps -ef | grep <process_name>
+kill <PID>
+# or explicitly
+kill -15 <PID>
+
+# port
+
+sudo fuser -k <port_number>/tcp   
 kill -9 $(lsof -t -i tcp:5000)
