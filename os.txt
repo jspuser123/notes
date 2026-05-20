@@ -1,1 +1,36 @@
+
+# cmd 
+wmic path softwareLicensingService get OA3xOriginalProductKey
+
+
+# powershell
+powershell "(Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey"   
+
+# update off admin cmd:
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 0 /f
+
+
+# orginal check:
+slmgr /xpr
+
+# single to pro
+VK7JG-NPHTM-C97JM-9MPGT-3V66T
+
+# helth check
+chkdsk /r 
+sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth
+
+# antivirus check
+any junk files
+booster
+cache
+
+# widows server evaluation to standard key installation
+
+DISM /online /Get-CurrentEdition
+DISM /online /Get-TargetEditions
+DISM /online /Set-Edition:ServerStandard /ProductKey:<key> /AcceptEula
+
+# restart agin goto activation key enter activation
+
 https://www.elevenforum.com/t/create-windows-11-bootable-usb-installation-media.750/

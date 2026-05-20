@@ -1,0 +1,28 @@
+netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=yes
+netsh advfirewall firewall set rule group="File and Printer Sharing" new action=block
+netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=no
+netsh advfirewall firewall set rule group="File and Printer Sharing" new action=allow
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enable=yes
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new action=block
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enable=no
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new action=allow
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv6-In)" new enable=yes
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv6-In)" new action=block
+
+
+# firewall rule inbond rule
+netsh advfirewall firewall set rule group="Windows Management Instrumentation (WMI)" new enable=yes
+netsh advfirewall firewall set rule group="Windows Management Instrumentation (WMI)" new action=block
+netsh advfirewall firewall set rule group="Windows Management Instrumentation (WMI)" new enable=no
+netsh advfirewall firewall set rule group="Windows Management Instrumentation (WMI)" new action=allow
+# port block
+netsh advfirewall firewall add rule name="Block Port" dir=in action=block protocol=TCP localport=3389
+# port allow
+netsh advfirewall firewall add rule name="Allow Port" dir=in action=allow protocol=TCP localport=3389
+# ip block
+netsh advfirewall firewall add rule name="Block IP" dir=in action=block remoteip=192.168.1.1
+# ip allow
+netsh advfirewall firewall add rule name="Allow IP" dir=in action=allow remoteip=192.168.1.1
+# firewall rule outbound rule
+netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=yes
+netsh advfirewall firewall set rule group="File and Printer Sharing" new action=block

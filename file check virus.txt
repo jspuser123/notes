@@ -1,0 +1,114 @@
+# etc file
+C:\Windows\System32\drivers\etc\hosts
+type C:\Windows\System32\drivers\etc\hosts
+notebad C:\Windows\System32\drivers\etc\hosts
+
+# fire wall cmd
+
+netsh advfirewall firewall add rule name='black domain' dir=out action=black remoteip=54.190.248.124
+netsh winhttp show proxy
+# cmd 
+netstat -ano
+
+netstat -ano | findstr ESTABLISHED
+netstat -an | findstr LISTENING
+
+tasklist | findstr 12812
+
+tasklist /FI "PID eq 18284"
+
+netstat -ano | findstr 1516
+
+wmic process where processid=5308 get ExecutablePath
+tasklist /svc /FI "PID eq 5308"
+taskkill /PID 18284 /F
+
+arp -a
+
+nslookup <suspicious IP>
+
+## user check
+net user
+net localgroup administrators
+
+
+# regedit
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+
+eventvwr:
+# Windows Logs → Security → Look for
+
+4625 Failed login attempt
+4624 Successful login
+4720 New user account created
+4732 User added to admin group
+7045 New suspicious service installed
+
+wireshark
+
+# Monitor All Traffic
+ip.addr != 192.168.2.1 && !dns && !ntp
+
+# Suspicious Traffic
+tcp.flags.reset == 1
+
+# forced connection resets (someone cutting your connection)
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
+#  port scanning (hacker mapping your system)
+tcp.analysis.retransmission
+
+# Data Theft Detection
+#large data leaving your network to outside IP
+tcp.len > 1000 && ip.dst != 192.168.2.1
+
+# data being pushed to external servers
+!(ip.dst == 192.168.0.0/16) && tcp.flags.push == 1
+
+#FTP transfers
+ftp || ftp-data
+
+# Unauthorized Access Detection  Metasploit backdoor port
+tcp.port == 4444 or 3389 or 5900 or 22
+
+#DNS Attack Detection
+dns
+
+# DNS errors — possible DNS poisoning
+dns.flags.rcode != 0
+
+# DNS going to unknown servers = very suspicious
+dns && ip.dst != 8.8.8.8 && ip.dst != 1.1.1.1
+
+#ARP Spoofing (Man in Middle) Detection
+#two different MAC addresses
+arp
+
+# ARP spoof alert
+arp.duplicate-address-detected
+
+# ARP poisoning attack
+arp.opcode == 2
+
+# Filter for idle suspicious traffic
+!(arp) && !(dns) && !(mdns) && !(ssdp) && !(nbns)
+
+
+🔴 Red tcp.flags.reset==1 Connection reset
+🟠 Orange tcp.analysis.retransmission Packet loss
+🟡 Yellow arp ARP activity
+🔵 Blue dns DNS requests
+🟣 Purple tcp.port==4444 Backdoor port
+
+ipinfo.io → location & owner
+virustotal.com → check if malicious
+abuseipdb.com → check if reported for abuse
+
+
+CMD Commands for IP → Hostname 
+ping -a 192.168.1.25
+
+nbtstat -A 192.168.1.25
+
+
